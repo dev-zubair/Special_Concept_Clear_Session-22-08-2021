@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="key-pad">
+        <button class="button">999</button>
+    </div>
+    <br>
+    <div id="storage">
+        <button class="button">1000</button>
+    </div>
+    <br>
+
+    <!-- Event Bubble -->
+    <section id="grand-parent">
+        <ul id="parent">
+            <li>1st Button</li>
+            <li>2nd Button</li>
+            <li id="child">3rd Button</li>
+        </ul>
+    </section>
+
+    <!-- তৃতীয় বাটনে ক্লিক করলে চাইল্ড বাটনে চাইল্ড সহ প্যারেন্ট ও গ্র্যান্ড প্যারেন্ট এর সব দেখাবে । মানে চাইল্ড আমি, প্যারেন্ট আমার বাবা ও গ্র্যান্ড প্যারেন্ট আমার দাদা । -->
+
+
+
+
+    <!-- 
+    আমরা কি করব ?
+    -- বাটনের ভিতরে যে লেখাটা আছে তাকে ক্লিক করলে ১ করে বারতে থাকবে ।
+
+    কিভাবে করব ?
+    --  ১। প্রথমে ID দিয়ে element কে ধরা ।
+        ২। এরপর কি ইভেন্ট ঘটলে কাজ হবে সেটা করব ।
+        ৩। ক্লিক করলে কি হবে সেটা করব । 
+
+    // EventListener - মানে ঘটনা । একটি বাটনে ক্লিক করলে কোন কিছু ঘটবে । আর এটা ঘটানোর জন্য addEventListener অ্যাড করতে
+    হয় ।
+    -->
+
+    <script>
+
+        //event bubble
+        document.getElementById('child').addEventListener('click', function () {
+            console.log('child clicked');
+        });
+        document.getElementById('parent').addEventListener('click', function () {
+            console.log('parent clicked');
+        });
+        document.getElementById('grand-parent').addEventListener('click', function () {
+            console.log('grand parent clicked');
+        });
+
+
+
+
+        // const zubairAhmed = document.getElementById('key-pad')
+        // zubairAhmed.addEventListener('click', function (zubairAhmed) {
+        //     zubairAhmed.target.innerText = parseFloat(zubairAhmed.target.innerText) + 1;    //999 এর সাথে এক এক করে বারবে।
+        //     console.log(event.target.innerText);
+        // });
+
+        // document.getElementById('key-pad').addEventListener('click', function (event) {
+        //     event.target.innerText = parseFloat(event.target.innerText) + 2;    //999 এর সাথে এক এক করে বারবে।
+        //     console.log(event.target.innerText);
+        // });
+
+        document.getElementById('storage').addEventListener('click', function (event) {
+            const value = document.getElementById('key-pad').innerText;                 //  1000 value
+            event.target.innerText = parseInt(event.target.innerText) + parseInt(value); // 1000 সাথে প্রতিবার 999 যোগ হবে।
+            console.log(event.target.innerText);
+        })
+    </script>
+</body>
+
+</html>
